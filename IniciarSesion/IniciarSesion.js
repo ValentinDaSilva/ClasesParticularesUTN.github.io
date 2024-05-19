@@ -20,10 +20,9 @@ var url = "https://script.google.com/macros/s/AKfycbzdklIYGsaVytfEq2mOegd4oiLuxe
 document.getElementById('formularioRegistro').addEventListener('submit', function (event) {
     event.preventDefault();
     let formData = new FormData(this);
-    let valores = formData.entries();
     let datosAEnviar = [];
-    valores.forEach((element, indice) => {
-        datosAEnviar.push(element[1]);
+    formData.forEach((valor, llave) => {
+        datosAEnviar.push(valor);
     });
     datosAEnviar[0] = datosAEnviar[0].toLowerCase();
     console.log(datosAEnviar);
