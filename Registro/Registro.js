@@ -10,19 +10,21 @@ document.getElementById('formularioRegistro').addEventListener('submit', functio
     if(validarFormulario()){
         let formData = new FormData(this);
         let datosAEnviar = [];
-        formData.forEach((element, indice) => {
+        let indice = 0;
+        formData.forEach((valor, clave) => {
             if(indice != 4 && indice != 5 && indice != 6){
-                datosAEnviar.push(element[1]);
+                datosAEnviar.push(valor);
             }else{
                 if(indice == 5) {
-                    auxiliar.push(element[1]);
+                    auxiliar.push(valor);
                 }
                 else if(indice == 6){
-                    auxiliar[0] = auxiliar[0]+element[1];
+                    auxiliar[0] = auxiliar[0]+valor;
                     
                     datosAEnviar.push(auxiliar[0]);
                 }
             }
+            indice++;
         });
         datosAEnviar[2] = datosAEnviar[2].toLowerCase();
         datosAEnviar.push(contraseñas);
