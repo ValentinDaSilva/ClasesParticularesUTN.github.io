@@ -9,26 +9,25 @@ document.getElementById('formularioRegistro').addEventListener('submit', functio
     event.preventDefault();
     if(validarFormulario()){
         let formData = new FormData(this);
-        let valores = formData.entries();
         let datosAEnviar = [];
-        let auxiliar = [];
-        valores.forEach((element, indice) => {
+	let indice = 0;
+        formData.forEach((valor, llave) => {
             if(indice != 4 && indice != 5 && indice != 6){
-                datosAEnviar.push(element[1]);
+                datosAEnviar.push(valor);
             }else{
+                let auxiliar = [];
                 if(indice == 5) {
-                    auxiliar.push(element[1]);
+                    auxiliar.push(valor);
                 }
                 else if(indice == 6){
-                    auxiliar[0] = auxiliar[0]+element[1];
-                    
+                    auxiliar[0] = auxiliar[0]+valor;
                     datosAEnviar.push(auxiliar[0]);
                 }
             }
+	   indice++;
         });
         datosAEnviar[2] = datosAEnviar[2].toLowerCase();
         datosAEnviar.push(contraseñas);
-        //conso(datosAEnviar);
         let envioFetch = new EnvioPOST("agregarAlumno",datosAEnviar);
         enviar(envioFetch);
     }
