@@ -1,5 +1,5 @@
 var url = "https://script.google.com/macros/s/AKfycbxcWoNo01tZYHKx-VhR0JNQDuLmJ6OlUj_HxAPiQIKqS55hqkif6AlbjLR7_ZnYMw/exec"; 
-var urlR = "https://script.google.com/macros/s/AKfycbwbyHtnGd8IOPuaqDcb0A9m1JDsEJm7n7IEEsdqDpPxq9uWQF1KbY_Yc0cnD8G57xM/exec";
+var urlR = "https://script.google.com/macros/s/AKfycbwhOEx38Rh8e7zbcntvAANqGs1XI4dHOibVDqB04550Dpwh5O-n1ex6n2sS-640H8o/exec";
 let $siguiente = document.querySelector(".siguiente");
 let $botones = document.querySelectorAll(".caja");
 let numeroDeHoja = 0;
