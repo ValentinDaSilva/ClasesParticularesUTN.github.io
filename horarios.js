@@ -147,6 +147,7 @@ async function siguiente () {
 
 function anterior () {
   numeroDeHoja--;
+  agregarInmoviblesSemana1();
   let $tabla = document.querySelector("table");
   $tabla.style.display = "none";
   $siguiente.style.display = "none";
