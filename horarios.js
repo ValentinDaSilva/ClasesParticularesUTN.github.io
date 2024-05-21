@@ -115,6 +115,7 @@ async function siguiente () {
     $tituloTable.innerHTML =  'Horarios Mayo Semana ' + (arg1+1) + '<br>(Los que estan en celeste son disponibles)';
     document.getElementById("loader").style.display = "block";
     $siguiente.style.display = "none";
+    quitarInmoviblesSemana1();
     $botones.forEach(elem=>elem.style.display = "none")
       try {
         const response = await fetch(urlInterno);
@@ -433,4 +434,21 @@ function ponerInmovibles(){
               }
           }
       }
+}
+function quitarInmoviblesSemana1(){
+        const tds = document.querySelectorAll('td');
+        tds.forEach(td => {
+            if (td.classList.contains('1')) {
+                td.classList.remove('inmovible');
+            }
+        });
+}
+
+function agregarInmoviblesSemana1(){
+        const tds = document.querySelectorAll('td');
+        tds.forEach(td => {
+            if (td.classList.contains('1')) {
+                td.classList.add('inmovible');
+            }
+        });
 }
