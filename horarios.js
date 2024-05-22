@@ -91,6 +91,7 @@ function cambiarColorMatriz() {
       }
       const data = await response.json();
       SemanaUno = data;
+      console.log(data)
       data.forEach(objeto => {
         modificarCelda(objeto.fila, objeto.columna);
       });
