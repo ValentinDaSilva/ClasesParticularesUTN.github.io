@@ -1,4 +1,4 @@
-var url = "https://script.google.com/macros/s/AKfycbwRgnygMwqKdBnUIRMndkJQ3OSdFJj7XtuIyyPW7LmZjEIhzgwbufRBqMSRTHr5yA/exec"; 
+var url = "https://script.google.com/macros/s/AKfycbwdO6N1DAUuTJTlbVvPyMjp2_YYHPE80eOHvfiMEXpYn4PuTUnEchIgS3rRRr6h9Q/exec"; 
 var urlR = "https://script.google.com/macros/s/AKfycbwhOEx38Rh8e7zbcntvAANqGs1XI4dHOibVDqB04550Dpwh5O-n1ex6n2sS-640H8o/exec";
 let $siguiente = document.querySelector(".siguiente");
 let $botones = document.querySelectorAll(".caja");
