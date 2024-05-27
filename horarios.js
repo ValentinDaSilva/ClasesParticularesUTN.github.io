@@ -117,6 +117,7 @@ async function siguiente () {
     document.getElementById("loader").style.display = "block";
     $siguiente.style.display = "none";
     quitarInmoviblesSemana1();
+    agregarInmoviblesSemana2();
     $botones.forEach(elem=>elem.style.display = "none")
       try {
         const response = await fetch(urlInterno);
@@ -149,6 +150,7 @@ async function siguiente () {
 function anterior () {
   numeroDeHoja--;
   agregarInmoviblesSemana1();
+  quitarInmoviblesSemana2();
   let $tabla = document.querySelector("table");
   $tabla.style.display = "none";
   $siguiente.style.display = "none";
@@ -450,6 +452,24 @@ function agregarInmoviblesSemana1(){
         const tds = document.querySelectorAll('td');
         tds.forEach(td => {
             if (td.classList.contains('1')) {
+                td.classList.add('inmovible');
+            }
+        });
+}
+
+function quitarInmoviblesSemana2(){
+        const tds = document.querySelectorAll('td');
+        tds.forEach(td => {
+            if (td.classList.contains('2')) {
+                td.classList.remove('inmovible');
+            }
+        });
+}
+
+function agregarInmoviblesSemana12(){
+        const tds = document.querySelectorAll('td');
+        tds.forEach(td => {
+            if (td.classList.contains('2')) {
                 td.classList.add('inmovible');
             }
         });
