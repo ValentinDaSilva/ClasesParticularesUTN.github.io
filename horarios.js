@@ -437,38 +437,3 @@ function ponerInmovibles(){
           }
       }
 }
-function quitarInmoviblesSemana1(){
-        const tds = document.querySelectorAll('td');
-        tds.forEach(td => {
-            if (td.classList.contains('1')) {
-                td.classList.remove('inmovible');
-            }
-        });
-}
-
-function agregarInmoviblesSemana1(){
-        const tds = document.querySelectorAll('td');
-        tds.forEach(td => {
-            if (td.classList.contains('1')) {
-                td.classList.add('inmovible');
-            }
-        });
-}
-
-function quitarInmoviblesSemana2(){
-        const tds = document.querySelectorAll('td');
-        tds.forEach(td => {
-            if (td.classList.contains('2')) {
-                td.classList.remove('inmovible');
-            }
-        });
-}
-
-function agregarInmoviblesSemana2(){
-        const tds = document.querySelectorAll('td');
-        tds.forEach(td => {
-            if (td.classList.contains('2')) {
-                td.classList.add('inmovible');
-            }
-        });
-}
