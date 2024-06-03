@@ -1,3 +1,5 @@
+var celdasReservadasSem1 = [];
+var celdasReservadasSem2 = [];
 var url = "https://script.google.com/macros/s/AKfycbwdO6N1DAUuTJTlbVvPyMjp2_YYHPE80eOHvfiMEXpYn4PuTUnEchIgS3rRRr6h9Q/exec"; 
 var urlR = "https://script.google.com/macros/s/AKfycbwhOEx38Rh8e7zbcntvAANqGs1XI4dHOibVDqB04550Dpwh5O-n1ex6n2sS-640H8o/exec";
 let $siguiente = document.querySelector(".siguiente");
@@ -435,3 +437,9 @@ function ponerInmovibles(){
           }
       }
 }
+
+(function HorariosReservadosSemana1(){
+    celdasReservadasSem1.forEach((elem)=>{
+          modificarCelda(elem[0],elem.substring(1));
+    })
+})()
