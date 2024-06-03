@@ -116,7 +116,6 @@ async function siguiente () {
     $tituloTable.innerHTML =  'Horarios Mayo Semana ' + (arg1+1) + '<br>(Los que estan en celeste son disponibles)';
     document.getElementById("loader").style.display = "block";
     $siguiente.style.display = "none";
-    quitarInmoviblesSemana1();
     $botones.forEach(elem=>elem.style.display = "none")
       try {
         const response = await fetch(urlInterno);
@@ -148,7 +147,6 @@ async function siguiente () {
 
 function anterior () {
   numeroDeHoja--;
-  agregarInmoviblesSemana1();
   let $tabla = document.querySelector("table");
   $tabla.style.display = "none";
   $siguiente.style.display = "none";
