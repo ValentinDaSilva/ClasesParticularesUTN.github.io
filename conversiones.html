@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Números</title>
+    <link rel="stylesheet" href="conversiones.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor de Números</h1>
+        
+        <div class="converter">
+            <h2>Ingresa un número y selecciona las bases de origen y destino</h2>
+            <input type="text" id="numeroInput" placeholder="Ingresa un número">
+            <div class="base-container">
+                <label for="baseOrigen">Base de Origen:</label>
+                <select id="baseOrigen">
+                    <option value="2">Binario</option>
+                    <option value="10" selected>Decimal</option>
+                    <option value="8">Octal</option>
+                    <option value="16">Hexadecimal</option>
+                </select>
+            </div>
+            <div class="base-container">
+                <label for="baseDestino">Base de Destino:</label>
+                <select id="baseDestino">
+                    <option value="2">Binario</option>
+                    <option value="10">Decimal</option>
+                    <option value="8">Octal</option>
+                    <option value="16">Hexadecimal</option>
+                </select>
+            </div>
+            <button onclick="convertirNumero()">Convertir</button>
+            <p id="resultadoOutput">Resultado = </p>
+        </div>
+    </div>
+
+    <script src="conversiones.css"></script>
+</body>
+</html>
