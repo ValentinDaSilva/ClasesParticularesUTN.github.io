@@ -1,4 +1,4 @@
-elet $conversion = document.getElementById("Conversion"),
+let $conversion = document.getElementById("Conversion"),
     $suma = document.getElementById("Suma"),
     $resta = document.getElementById("Resta"),
     $multiplicacion = document.getElementById("Multiplicacion"),
@@ -538,7 +538,8 @@ function dividirDosNumeros(bin1, bin2) {
 	 document.getElementById("resultadoOutput6").innerHTML = "Resultado: "+resultBinary;
     return resultBinary;
 }
-function calculateHammingCode(inputBinary) {
+
+function calcularCodigoHamming(inputBinary) {
     // Convierte la entrada binaria a un array de bits
    if(inputBinary===undefined)inputBinary=document.getElementById("numeroHamming").value
     let dataBits = inputBinary.split('').map(Number);
@@ -565,7 +566,7 @@ function calculateHammingCode(inputBinary) {
             j++;
         }
     }
-    
+
     // Calcular los bits de paridad
     for (let i = 0; i < r; i++) {
         let parityBitPosition = 1 << i;
@@ -583,5 +584,5 @@ function calculateHammingCode(inputBinary) {
     
     // Convierte el array de hamming a una cadena binaria
     document.getElementById("resultadoOutput7").innerHTML = "Resultado: "+hammingCode.join('');
-return hammingCode.join('');
+    return hammingCode.join('');
 }
