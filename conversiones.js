@@ -1,4 +1,4 @@
-let $conversion = document.getElementById("Conversion"),
+elet $conversion = document.getElementById("Conversion"),
     $suma = document.getElementById("Suma"),
     $resta = document.getElementById("Resta"),
     $multiplicacion = document.getElementById("Multiplicacion"),
@@ -538,4 +538,50 @@ function dividirDosNumeros(bin1, bin2) {
 	 document.getElementById("resultadoOutput6").innerHTML = "Resultado: "+resultBinary;
     return resultBinary;
 }
-
+function calculateHammingCode(inputBinary) {
+    // Convierte la entrada binaria a un array de bits
+   if(inputBinary===undefined)inputBinary=document.getElementById("numeroHamming").value
+    let dataBits = inputBinary.split('').map(Number);
+    
+    // Calcular la cantidad de bits de paridad necesarios
+    let m = dataBits.length;
+    let r = 0;
+    
+    // Encuentra el número mínimo de bits de paridad
+    while ((1 << r) < m + r + 1) {
+        r++;
+    }
+    
+    // Inicializa el array de hamming con bits de datos y de paridad
+    let hammingCode = new Array(m + r).fill(0);
+    
+    // Coloca los bits de datos en las posiciones correctas
+    let j = 0;
+    for (let i = 1; i <= hammingCode.length; i++) {
+        if ((i & (i - 1)) == 0) {  // Si i es una potencia de 2 (posición de bit de paridad)
+            hammingCode[i - 1] = 0;  // Inicializa el bit de paridad a 0 (temporalmente)
+        } else {
+            hammingCode[i - 1] = dataBits[j];
+            j++;
+        }
+    }
+    
+    // Calcular los bits de paridad
+    for (let i = 0; i < r; i++) {
+        let parityBitPosition = 1 << i;
+        let parity = 0;
+        
+        for (let j = parityBitPosition; j <= hammingCode.length; j++) {
+            if ((j & parityBitPosition) !== 0) {
+                parity ^= hammingCode[j - 1];
+            }
+        }
+        
+        // Coloca el bit de paridad calculado en la posición correspondiente
+        hammingCode[parityBitPosition - 1] = parity;
+    }
+    
+    // Convierte el array de hamming a una cadena binaria
+    document.getElementById("resultadoOutput7").innerHTML = "Resultado: "+hammingCode.join('');
+return hammingCode.join('');
+}
