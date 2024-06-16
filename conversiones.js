@@ -489,3 +489,53 @@ function multiplicarDosNumeros(n1,n2){
     return resultado;
 }
 
+function binaryToDecimal(binary) {
+    return parseInt(binary, 2);
+}
+
+// Función para convertir un número decimal a binario (en formato string)
+function decimalToBinary(decimal) {
+    // Convertimos la parte entera
+    let integerPart = Math.floor(decimal);
+    let binaryIntegerPart = integerPart.toString(2);
+
+    // Convertimos la parte fraccionaria
+    let fractionalPart = decimal - integerPart;
+    let binaryFractionalPart = '';
+
+    let count = 0;
+    while (fractionalPart !== 0 && count < 2) {
+        fractionalPart *= 2;
+        if (fractionalPart >= 1) {
+            binaryFractionalPart += '1';
+            fractionalPart -= 1;
+        } else {
+            binaryFractionalPart += '0';
+        }
+        count++;
+    }
+
+    return binaryFractionalPart.length > 0 ? `${binaryIntegerPart}.${binaryFractionalPart}` : binaryIntegerPart;
+}
+
+// Función para dividir dos números binarios y obtener el resultado en binario
+function dividirDosNumeros(bin1, bin2) {
+	if(bin1 === undefined) bin1 = parseInt(document.getElementById("numeroDividir1").value);
+    if(bin2 === undefined) bin2 = parseInt(document.getElementById("numeroDividir2").value);
+    // Convertimos los números binarios a decimales
+    let decimal1 = binaryToDecimal(bin1);
+    let decimal2 = binaryToDecimal(bin2);
+
+    // Realizamos la división
+    let resultDecimal = decimal1 / decimal2;
+
+    // Redondeamos el resultado a dos decimales
+    resultDecimal = parseFloat(resultDecimal.toFixed(2));
+
+    // Convertimos el resultado de nuevo a binario
+    let resultBinary = decimalToBinary(resultDecimal);
+	 console.log(resultBinary);
+	 document.getElementById("resultadoOutput6").innerHTML = "Resultado: "+resultBinary;
+    return resultBinary;
+}
+
