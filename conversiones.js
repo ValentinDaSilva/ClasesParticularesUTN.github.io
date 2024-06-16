@@ -545,6 +545,13 @@ function dividirDosNumeros(bin1, bin2) {
     return resultBinary;
 }
 
+function esPotenciaDeDos(n) {
+    if (n <= 0) {
+        return false;
+    }
+    return (n & (n - 1)) === 0;
+}
+
 function calcularCodigoHamming(numero){
     //Calcular cantidad de bits totales y bits de paridad
 	if(numero == undefined) numero = document.getElementById("numeroHamming").value;
