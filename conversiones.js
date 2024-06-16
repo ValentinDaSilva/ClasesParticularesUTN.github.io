@@ -545,51 +545,49 @@ function dividirDosNumeros(bin1, bin2) {
     return resultBinary;
 }
 
-function calcularCodigoHamming(input) {
-    // Convierte el input a un array de bits
-    if(input===undefined)input=document.getElementById("numeroHamming").value;
-    let bits = input.split('').map(Number);
-    
-    // Número de bits de datos
-    let m = bits.length;
-    
-    // Número de bits de paridad
-    let r = 0;
-    while ((1 << r) < (m + r + 1)) {
-        r++;
+function calcularCodigoHamming(numero){
+    //Calcular cantidad de bits totales y bits de paridad
+	if(numero == undefined) numero = document.getElementById("numeroHamming").value;
+    let bitsTotales = numero.length, bitsParidad = 0;
+    while(Math.pow(2,bitsParidad) < numero.length + bitsParidad + 1){
+        bitsParidad++; bitsTotales++;
     }
-    
-    // Total bits en el código Hamming
-    let totalBits = m + r;
-    
-    // Crear un array para los bits Hamming con tamaño totalBits
-    let hammingCode = new Array(totalBits).fill(0);
-    
-    // Colocar los bits de datos en las posiciones correctas
-    let j = 0;
-    for (let i = 1; i <= totalBits; i++) {
-        if ((i & (i - 1)) == 0) {
-            // Posición de paridad
-            hammingCode[i - 1] = 0;
-        } else {
-            // Posición de bit de datos
-            hammingCode[i - 1] = bits[j];
+    console.log("Cant bits paridad: ",bitsParidad);
+    let numFinal = new Array(bitsTotales), i = 0;
+    for(let i = bitsTotales, w = 0, j = 0; i >= 1; i--, w++){
+        if(!esPotenciaDeDos(i)){
+            numFinal[w] = numero[j];
             j++;
         }
     }
-    
-    // Calcular los bits de paridad
-    for (let i = 0; i < r; i++) {
-        let parityPos = 1 << i;
-        let parity = 0;
-        for (let j = parityPos; j <= totalBits; j++) {
-            if (j & parityPos) {
-                parity ^= hammingCode[j - 1];
+    let contador = 1, vueltas = 0;
+    numFinal = numFinal.reverse();
+    do{
+        let posicionVector = 0, bit = 0;
+            let arrayAux = new Array(bitsTotales+1);
+        while(posicionVector <= bitsTotales){
+            for(let i = 0; i < contador && posicionVector <= bitsTotales; i++){
+                arrayAux[posicionVector] = 0;
+                posicionVector++;
+            }
+            for(let i = 0; i < contador && posicionVector <= bitsTotales; i++){
+                arrayAux[posicionVector] = 1;
+                posicionVector++;
             }
         }
-        hammingCode[parityPos - 1] = parity;
-    }
-        document.getElementById("resultadoOutput7").innerHTML = "Resultado: "+hammingCode.join('');
-   
-    return hammingCode.join('');
+        arrayAux = arrayAux.slice(1);
+        console.log(arrayAux);
+        for(let i = 0; i < arrayAux.length; i++){
+            if(arrayAux[i] == 1){
+                bit = XOR(bit,parseInt(numFinal[i]));
+            }
+        }
+        //console.log((bit == false)? "0": "1");
+        numFinal[contador-1] = (bit == false)? "0": "1";
+        //console.log(numFinal.reverse());
+        contador*=2;
+        vueltas++;
+    }while(vueltas < bitsParidad);
+    document.getElementById("resultadoOutput7").innerHTML = "Resultado: "+ numFinal.reverse().join(' ');
+    return numFinal.reverse().join(' ');
 }
