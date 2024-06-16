@@ -545,50 +545,51 @@ function dividirDosNumeros(bin1, bin2) {
     return resultBinary;
 }
 
-function calcularCodigoHamming(inputBinary) {
-    // Convierte la entrada binaria a un array de bits
-   if(inputBinary===undefined)inputBinary=document.getElementById("numeroHamming").value
-    let dataBits = inputBinary.split('').map(Number);
+function calcularCodigoHamming(input) {
+    // Convierte el input a un array de bits
+    if(input===undefined)input=document.getElementById("numeroHamming").value;
+    let bits = input.split('').map(Number);
     
-    // Calcular la cantidad de bits de paridad necesarios
-    let m = dataBits.length;
+    // Número de bits de datos
+    let m = bits.length;
+    
+    // Número de bits de paridad
     let r = 0;
-    
-    // Encuentra el número mínimo de bits de paridad
-    while ((1 << r) < m + r + 1) {
+    while ((1 << r) < (m + r + 1)) {
         r++;
     }
     
-    // Inicializa el array de hamming con bits de datos y de paridad
-    let hammingCode = new Array(m + r).fill(0);
+    // Total bits en el código Hamming
+    let totalBits = m + r;
     
-    // Coloca los bits de datos en las posiciones correctas
+    // Crear un array para los bits Hamming con tamaño totalBits
+    let hammingCode = new Array(totalBits).fill(0);
+    
+    // Colocar los bits de datos en las posiciones correctas
     let j = 0;
-    for (let i = 1; i <= hammingCode.length; i++) {
-        if ((i & (i - 1)) == 0) {  // Si i es una potencia de 2 (posición de bit de paridad)
-            hammingCode[i - 1] = 0;  // Inicializa el bit de paridad a 0 (temporalmente)
+    for (let i = 1; i <= totalBits; i++) {
+        if ((i & (i - 1)) == 0) {
+            // Posición de paridad
+            hammingCode[i - 1] = 0;
         } else {
-            hammingCode[i - 1] = dataBits[j];
+            // Posición de bit de datos
+            hammingCode[i - 1] = bits[j];
             j++;
         }
     }
-
+    
     // Calcular los bits de paridad
     for (let i = 0; i < r; i++) {
-        let parityBitPosition = 1 << i;
+        let parityPos = 1 << i;
         let parity = 0;
-        
-        for (let j = parityBitPosition; j <= hammingCode.length; j++) {
-            if ((j & parityBitPosition) !== 0) {
+        for (let j = parityPos; j <= totalBits; j++) {
+            if (j & parityPos) {
                 parity ^= hammingCode[j - 1];
             }
         }
-        
-        // Coloca el bit de paridad calculado en la posición correspondiente
-        hammingCode[parityBitPosition - 1] = parity;
+        hammingCode[parityPos - 1] = parity;
     }
-    
-    // Convierte el array de hamming a una cadena binaria
-    document.getElementById("resultadoOutput7").innerHTML = "Resultado: "+hammingCode.join('');
+        document.getElementById("resultadoOutput7").innerHTML = "Resultado: "+hammingCode.join('');
+   
     return hammingCode.join('');
 }
