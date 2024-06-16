@@ -1,13 +1,34 @@
-function mostrarConversion(tipo) {
-    document.getElementById('binarioADecimal').style.display = 'none';
-    document.getElementById('decimalABinario').style.display = 'none';
+let $conversion = document.getElementById("Conversion"),
+    $suma = document.getElementById("Suma"),
+    $resta = document.getElementById("Resta"),
+    $multiplicacion = document.getElementById("Multiplicacion"),
+    $division = document.getElementById("Division");
 
-    if (tipo === 'binarioADecimal') {
-        document.getElementById('binarioADecimal').style.display = 'block';
-    } else if (tipo === 'decimalABinario') {
-        document.getElementById('decimalABinario').style.display = 'block';
-    }
-}
+    $conversion.addEventListener("click",()=>{
+        
+        document.querySelector(".conversor").style.display = "block";
+        document.querySelector(".container1").style.display = "none";
+    })
+    $suma.addEventListener("click",()=>{
+        
+        document.querySelector(".suma").style.display = "block";
+        document.querySelector(".container1").style.display = "none";
+    })
+    $resta.addEventListener("click",()=>{
+        
+        document.querySelector(".resta").style.display = "block";
+        document.querySelector(".container1").style.display = "none";
+    })
+    $multiplicacion.addEventListener("click",()=>{
+        
+        document.querySelector(".multiplicacion").style.display = "block";
+        document.querySelector(".container1").style.display = "none";
+    })
+    $division.addEventListener("click",()=>{
+        
+        document.querySelector(".division").style.display = "block";
+        document.querySelector(".container1").style.display = "none";
+    })
 
 function validaciones(entrada,base){
     let error = false;
@@ -237,9 +258,8 @@ function sumarDosNumeros(n1,n2){
     let parteEnteraN1 = n1,
         parteEnteraN2 = n2;
     if(n1.includes(".") && n2.includes(".")){
-        parteEnteraN1 = n1.substr(0,indiceOf(".")-1);
-        parteEnteraN2 = n2.substr(0,indiceOf(".")-1);
-        console.log("Numero con coma");
+        parteEnteraN1 = n1.substr(0,n1.indexOf("."));
+        parteEnteraN2 = n2.substr(0,n2.indexOf("."));
         let parteFraccionariaN1 = n1.substr(n1.indexOf(".")+1,n1.length-1);
         let parteFraccionariaN2 = n2.substr(n2.indexOf(".")+1,n2.length-1);
         sumaEnteros(parteFraccionariaN1,parteFraccionariaN2);
@@ -247,12 +267,9 @@ function sumarDosNumeros(n1,n2){
     }
 
     function sumaEnteros(n1,n2){
-        console.log("N1: ",n1);
-        console.log("N2: ",n2);
+
         let n1UltimoIndice = n1.length - 1;
         let n2UltimoIndice = n2.length - 1;
-        console.log("n1 longitud: ",n1UltimoIndice+1);
-        console.log("n2 longitud: ",n2UltimoIndice+1);
         if(acarreoAnterior === undefined ) acarreoAnterior = 0;
         while(n1UltimoIndice >= 0 && n2UltimoIndice >= 0){
             let aux;
@@ -325,6 +342,7 @@ function CA2(numero){
 }
 
 function restarDosNumeros(n1,n2){
+    //console.log("Entre en la resta", n1, n2);
     if(n1 == undefined) n1 = document.getElementById("numeroResta1").value;
     if(n2 == undefined) n2 = document.getElementById("numeroResta2").value;
     let n1Cifras = n1.length,
@@ -336,7 +354,7 @@ function restarDosNumeros(n1,n2){
         n2 = concat("0",n2);
     }
     let negativo = CA2(n2);
-    console.log(n1,negativo);
+    
     
     function sumarDosNumerosParaResta(n1,n2){
         let imprimirResultado = (n1 === undefined || n2 === undefined);
@@ -350,7 +368,7 @@ function restarDosNumeros(n1,n2){
         if(n1.includes(".") && n2.includes(".")){
             parteEnteraN1 = n1.substr(0,indiceOf(".")-1);
             parteEnteraN2 = n2.substr(0,indiceOf(".")-1);
-            console.log("Numero con coma");
+            
             let parteFraccionariaN1 = n1.substr(n1.indexOf(".")+1,n1.length-1);
             let parteFraccionariaN2 = n2.substr(n2.indexOf(".")+1,n2.length-1);
             sumaEnteros(parteFraccionariaN1,parteFraccionariaN2);
@@ -358,12 +376,8 @@ function restarDosNumeros(n1,n2){
         }
     
         function sumaEnterosParaResta(n1,n2){
-            console.log("N1: ",n1);
-            console.log("N2: ",n2);
             let n1UltimoIndice = n1.length - 1;
             let n2UltimoIndice = n2.length - 1;
-            console.log("n1 longitud: ",n1UltimoIndice+1);
-            console.log("n2 longitud: ",n2UltimoIndice+1);
             if(acarreoAnterior === undefined ) acarreoAnterior = 0;
             while(n1UltimoIndice >= 0 && n2UltimoIndice >= 0){
                 let aux;
@@ -404,7 +418,7 @@ function restarDosNumeros(n1,n2){
         return {resultado,acarreoFinal:acarreoAnterior};
     }
     let suma = sumarDosNumerosParaResta(n1,negativo);
-
+    
     if(suma.acarreoFinal){
         document.getElementById("resultadoOutput3").innerHTML = "Resultado 1 "+suma.resultado;
         document.getElementById("resultadoOutput4").innerHTML = "(Resultado positivo)";
@@ -413,6 +427,65 @@ function restarDosNumeros(n1,n2){
         document.getElementById("resultadoOutput3").innerHTML = "Resultado 0 "+suma.resultado;
         document.getElementById("resultadoOutput4").innerHTML = "(Resultado negativo)";
     }
+    return suma.resultado;
 }
 
+function agregarNCeros(cadena,cantidad){
+    let aux = cadena;
+    for(let i = 0; i < cantidad; i++){
+        aux += '0';
+    }
+    return aux;
+}
+
+
+function eliminarComa(cadena){
+    let aux = "";
+    for(let i = 0; i < cadena.length; i++){
+        if(cadena[i]!=".") aux+=cadena[i];
+    }
+    return aux;
+}
+function multiplicarDosNumeros(n1,n2){
+    let contadorPosiciones = 0;
+    if(n1 === undefined) n1 = document.getElementById("numeroMultiplicar1").value;
+    if(n2 === undefined) n2 = document.getElementById("numeroMultiplicar2").value;
+    if(n1.includes(".")){
+        for(let i = n1.length - 1; i >= 0; i--){
+            if(n1[i]!=".") contadorPosiciones++;
+            else break;
+        }
+        n1 = eliminarComa(n1);
+    } 
+    if(n2.includes(".")){
+        for(let i = n2.length - 1; i >= 0; i--){
+            if(n2[i]!=".") contadorPosiciones++;
+            else break;
+        }
+        n2 = eliminarComa(n2);
+    }
+    let resultado = "0", cantidadDe0 = 0;
+    for(let i = n2.length - 1; i >= 0 ;i--){
+        let digito = n2[i], auxiliar;
+        if(digito == 1){
+            auxiliar = agregarNCeros(n1,cantidadDe0);
+            resultado = sumarDosNumeros(resultado,auxiliar);
+        }
+        cantidadDe0++;
+    }
+    if(contadorPosiciones != 0){
+        let aux = "";
+        for(let i = resultado.length - 1; i >= 0; i--,contadorPosiciones--){
+            if(contadorPosiciones == 0){
+                aux = concat(".",aux);
+                i++;
+            }else{
+                aux = concat(resultado[i],aux);
+            }
+        }
+        resultado = aux;
+    }
+    document.getElementById("resultadoOutput5").innerHTML = "Resultado: "+resultado;
+    return resultado;
+}
 

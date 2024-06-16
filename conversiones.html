@@ -3,10 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Números</title>
+    <title>Interfaz de Bienvenida</title>
     <link rel="stylesheet" href="conversiones.css">
 </head>
 <body>
+    <div class="container1" style="display: block;">
+        <h1>Elige una opcion</h1>
+        <div class="options">
+            <div class="option" id="Conversion">
+                <img src="conversion.jpg" alt="Conversión de Sistemas Numéricos">
+                <p>Conversión de Sistemas Numéricos</p>
+            </div>
+            <div class="option" id="Suma">
+                <img src="suma.jpg" alt="Suma Binaria">
+                <p>Suma Binaria</p>
+            </div>
+            <div class="option" id="Resta">
+                <img src="resta.jpg" alt="Resta Binaria">
+                <p>Resta Binaria</p>
+            </div>
+            <div class="option" id="Multiplicacion">
+                <img src="multiplicacion.jpg" alt="Multiplicación Binaria">
+                <p>Multiplicación Binaria</p>
+            </div>
+            <div class="option" id="Division">
+                <img src="division.jpg" alt="División Binaria">
+                <p>División Binaria</p>
+            </div>
+        </div>
+    </div>
     <div class="container conversor" style="display: none;">
         <h1>Conversor de Números</h1>
         <div class="converter">
@@ -46,7 +71,7 @@
             <p id="resultadoOutput2"></p>
         </div>
     </div>
-    <div class="container resta" style="display: block;">
+    <div class="container resta" style="display: none;">
         <h1>Restar dos numeros en binario</h1>
         
         <div class="converter">
@@ -59,7 +84,35 @@
             <p id="resultadoOutput4"></p>
         </div>
     </div>
-
+    <div class="container multiplicacion" style="display: none;">
+        <h1>Multiplicar dos numeros en binario</h1>
+        
+        <div class="converter">
+            <h2>Ingresa el primer numero</h2>
+            <div style="display:flex" class="entradaMultiplicacion">
+                <!-- <div>+</div> -->
+                <input type="text" id="numeroMultiplicar1" placeholder="Ingresa un número">
+            </div>
+            <h2>Ingresa el segundo numero</h2>
+            <input type="text" id="numeroMultiplicar2" placeholder="Ingresa un número">
+            <button onclick="multiplicarDosNumeros()">Multiplicar</button>
+            <p id="resultadoOutput5"></p>
+        </div>
+    </div>
+    <div class="container division" style="display: none;">
+        <h1>Dividir dos numeros en binario</h1>
+        <div class="converter">
+            <h2>Ingresa el primer numero</h2>
+            <div style="display:flex" class="entradaMultiplicacion">
+                <!-- <div>+</div> -->
+                <input type="text" id="numeroDividir1" placeholder="Ingresa un número">
+            </div>
+            <h2>Ingresa el segundo numero</h2>
+            <input type="text" id="numeroDividir2" placeholder="Ingresa un número">
+            <button onclick="dividirDosNumeros()">Dividir</button>
+            <p id="resultadoOutput6"></p>
+        </div>
+    </div>
     <script src="conversiones.js"></script>
 </body>
 </html>
