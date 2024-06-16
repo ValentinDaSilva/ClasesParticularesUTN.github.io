@@ -2,7 +2,8 @@ let $conversion = document.getElementById("Conversion"),
     $suma = document.getElementById("Suma"),
     $resta = document.getElementById("Resta"),
     $multiplicacion = document.getElementById("Multiplicacion"),
-    $division = document.getElementById("Division");
+    $division = document.getElementById("Division"),
+    $hamming = document.getElementById("Hamming");
 
     $conversion.addEventListener("click",()=>{
         
@@ -27,6 +28,11 @@ let $conversion = document.getElementById("Conversion"),
     $division.addEventListener("click",()=>{
         
         document.querySelector(".division").style.display = "block";
+        document.querySelector(".container1").style.display = "none";
+    })
+    $hamming.addEventListener("click",()=>{
+        
+        document.querySelector(".hamming").style.display = "block";
         document.querySelector(".container1").style.display = "none";
     })
 
