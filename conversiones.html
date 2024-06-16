@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="conversiones.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container conversor" style="display: none;">
         <h1>Conversor de Números</h1>
-        
         <div class="converter">
             <h2>Ingresa un número y selecciona las bases de origen y destino</h2>
             <input type="text" id="numeroInput" placeholder="Ingresa un número">
@@ -32,10 +31,35 @@
                 </select>
             </div>
             <button onclick="convertirNumero()">Convertir</button>
-            <p id="resultadoOutput">Resultado = </p>
+            <p id="resultadoOutput"></p>
+        </div>
+    </div>
+    <div class="container suma" style="display: none;">
+        <h1>Sumar dos numeros en binario</h1>
+        
+        <div class="converter">
+            <h2>Ingresa el primer numero</h2>
+            <input type="text" id="numeroInput1" placeholder="Ingresa un número">
+            <h2>Ingresa el segundo numero</h2>
+            <input type="text" id="numeroInput2" placeholder="Ingresa un número">
+            <button onclick="sumarDosNumeros()">Sumar</button>
+            <p id="resultadoOutput2"></p>
+        </div>
+    </div>
+    <div class="container resta" style="display: block;">
+        <h1>Restar dos numeros en binario</h1>
+        
+        <div class="converter">
+            <h2>Ingresa el primer numero</h2>
+            <input type="text" id="numeroResta1" placeholder="Ingresa un número">
+            <h2>Ingresa el segundo numero</h2>
+            <input type="text" id="numeroResta2" placeholder="Ingresa un número">
+            <button onclick="restarDosNumeros()">Restar</button>
+            <p id="resultadoOutput3"></p>
+            <p id="resultadoOutput4"></p>
         </div>
     </div>
 
-    <script src="conversiones.css"></script>
+    <script src="conversiones.js"></script>
 </body>
 </html>
