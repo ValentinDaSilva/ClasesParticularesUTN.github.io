@@ -657,6 +657,6 @@ function calcularCodigoHamming(numero){
         contador*=2;
         vueltas++;
     }while(vueltas < bitsParidad);
-
+    document.getElementById("resultadoOutput7".innerHTML = "Resultado: "+numFinal.reverse().join(' ');
     return numFinal.reverse().join(' ');
 }
