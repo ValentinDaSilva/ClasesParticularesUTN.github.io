@@ -2,31 +2,47 @@ let $conversion = document.getElementById("Conversion"),
     $suma = document.getElementById("Suma"),
     $resta = document.getElementById("Resta"),
     $multiplicacion = document.getElementById("Multiplicacion"),
-    $division = document.getElementById("Division");
+    $division = document.getElementById("Division"),
+    $hamming = document.getElementById("Hamming"),
+    $btnAtras = document.getElementById("Atras");
+
+    $btnAtras.addEventListener("click",()=>{
+        document.querySelector(".conversor").style.display = "none";
+        document.querySelector(".suma").style.display = "none";
+        document.querySelector(".hamming").style.display = "none";
+        document.querySelector(".resta").style.display = "none";
+        document.querySelector(".multiplicacion").style.display = "none";
+        document.querySelector(".division").style.display = "block";
+        document.querySelector(".container1").style.display = "block";
+    })
 
     $conversion.addEventListener("click",()=>{
-        
         document.querySelector(".conversor").style.display = "block";
         document.querySelector(".container1").style.display = "none";
     })
+
     $suma.addEventListener("click",()=>{
-        
         document.querySelector(".suma").style.display = "block";
         document.querySelector(".container1").style.display = "none";
     })
+
     $resta.addEventListener("click",()=>{
-        
         document.querySelector(".resta").style.display = "block";
         document.querySelector(".container1").style.display = "none";
     })
+
     $multiplicacion.addEventListener("click",()=>{
-        
         document.querySelector(".multiplicacion").style.display = "block";
         document.querySelector(".container1").style.display = "none";
     })
+
     $division.addEventListener("click",()=>{
-        
         document.querySelector(".division").style.display = "block";
+        document.querySelector(".container1").style.display = "none";
+    })
+
+    $hamming.addEventListener("click",()=>{
+        document.querySelector(".hamming").style.display = "block";
         document.querySelector(".container1").style.display = "none";
     })
 
