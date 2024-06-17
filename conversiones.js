@@ -14,36 +14,43 @@ let $conversion = document.getElementById("Conversion"),
         document.querySelector(".multiplicacion").style.display = "none";
         document.querySelector(".division").style.display = "none";
         document.querySelector(".container1").style.display = "block";
+	document.querySelector(".flechaHaciaAtras").style.display = "none";
     })
 
     $conversion.addEventListener("click",()=>{
         document.querySelector(".conversor").style.display = "block";
         document.querySelector(".container1").style.display = "none";
+	document.querySelector(".flechaHaciaAtras").style.display = "block";
     })
 
     $suma.addEventListener("click",()=>{
         document.querySelector(".suma").style.display = "block";
         document.querySelector(".container1").style.display = "none";
+	document.querySelector(".flechaHaciaAtras").style.display = "block";
     })
 
     $resta.addEventListener("click",()=>{
         document.querySelector(".resta").style.display = "block";
         document.querySelector(".container1").style.display = "none";
+	document.querySelector(".flechaHaciaAtras").style.display = "block";
     })
 
     $multiplicacion.addEventListener("click",()=>{
         document.querySelector(".multiplicacion").style.display = "block";
         document.querySelector(".container1").style.display = "none";
+	document.querySelector(".flechaHaciaAtras").style.display = "block";
     })
 
     $division.addEventListener("click",()=>{
         document.querySelector(".division").style.display = "block";
         document.querySelector(".container1").style.display = "none";
+	document.querySelector(".flechaHaciaAtras").style.display = "block";
     })
 
     $hamming.addEventListener("click",()=>{
         document.querySelector(".hamming").style.display = "block";
         document.querySelector(".container1").style.display = "none";
+	document.querySelector(".flechaHaciaAtras").style.display = "block";
     })
 
 function validaciones(entrada,base){
