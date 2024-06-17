@@ -109,7 +109,8 @@ p {
     font-size: 1.2em;
 }
 
-.flehcaHaciaAtras{
+.flechaHaciaAtras{
+    display: none;
     position: fixed;
     width: 5%;
     height: 10%;
