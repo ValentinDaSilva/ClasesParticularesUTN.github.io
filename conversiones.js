@@ -12,7 +12,7 @@ let $conversion = document.getElementById("Conversion"),
         document.querySelector(".hamming").style.display = "none";
         document.querySelector(".resta").style.display = "none";
         document.querySelector(".multiplicacion").style.display = "none";
-        document.querySelector(".division").style.display = "block";
+        document.querySelector(".division").style.display = "none";
         document.querySelector(".container1").style.display = "block";
     })
 
