@@ -2,8 +2,7 @@ let $conversion = document.getElementById("Conversion"),
     $suma = document.getElementById("Suma"),
     $resta = document.getElementById("Resta"),
     $multiplicacion = document.getElementById("Multiplicacion"),
-    $division = document.getElementById("Division"),
-    $hamming = document.getElementById("Hamming");
+    $division = document.getElementById("Division");
 
     $conversion.addEventListener("click",()=>{
         
@@ -28,11 +27,6 @@ let $conversion = document.getElementById("Conversion"),
     $division.addEventListener("click",()=>{
         
         document.querySelector(".division").style.display = "block";
-        document.querySelector(".container1").style.display = "none";
-    })
-    $hamming.addEventListener("click",()=>{
-        
-        document.querySelector(".hamming").style.display = "block";
         document.querySelector(".container1").style.display = "none";
     })
 
@@ -268,7 +262,27 @@ function sumarDosNumeros(n1,n2){
         parteEnteraN2 = n2.substr(0,n2.indexOf("."));
         let parteFraccionariaN1 = n1.substr(n1.indexOf(".")+1,n1.length-1);
         let parteFraccionariaN2 = n2.substr(n2.indexOf(".")+1,n2.length-1);
+        let PFN1Digitos = parteFraccionariaN1.length;
+        let PFN2Digitos = parteFraccionariaN2.length;
+        for(let i = PFN1Digitos; i < PFN2Digitos;i++){
+            parteFraccionariaN1+="0";
+        }
+        for(let i = PFN2Digitos; i < PFN1Digitos;i++){
+            parteFraccionariaN2+="0";
+        }
         sumaEnteros(parteFraccionariaN1,parteFraccionariaN2);
+        resultado = concat(".",resultado);
+    }
+    else if(n1.includes(".")){
+        parteEnteraN1 = n1.substr(0,n1.indexOf("."));
+        let parteFraccionariaN1 = n1.substr(n1.indexOf(".")+1,n1.length-1);
+        resultado = parteFraccionariaN1;
+        resultado = concat(".",resultado);
+    }
+    else if(n2.includes(".")){
+        parteEnteraN2 = n2.substr(0,n1.indexOf("."));
+        let parteFraccionariaN2 = n2.substr(n2.indexOf(".")+1,n2.length-1);
+        resultado = parteFraccionariaN2;
         resultado = concat(".",resultado);
     }
 
@@ -332,8 +346,10 @@ function CA2(numero){
             if(i != indice) aux+=numero[i];
         }
         aux = invertirCifras(aux);
+        console.log(aux);
         aux = sumarDosNumeros(aux,"1");
-        numero = aux.substring(0,indice)+"."+aux.substring(indice,aux.length-1);
+        console.log(aux);
+        numero = aux.substring(0,indice)+"."+aux.substring(indice,aux.length);
     }else{
         numero = invertirCifras(numero);
         longitud = numero.length;
@@ -344,6 +360,7 @@ function CA2(numero){
             numero = concat("0",numero);
         }
     }
+    console.log("Complemento a 2:", numero);
     return numero;    
 }
 
@@ -351,17 +368,16 @@ function restarDosNumeros(n1,n2){
     //console.log("Entre en la resta", n1, n2);
     if(n1 == undefined) n1 = document.getElementById("numeroResta1").value;
     if(n2 == undefined) n2 = document.getElementById("numeroResta2").value;
-    let n1Cifras = n1.length,
-        n2Cifras = n2.length;
-    for(let i = n1Cifras; i < n2Cifras; i++){
-        n1 = concat("0",n1);
-    }
-    for(let i = n2Cifras; i < n1Cifras; i++){
-        n2 = concat("0",n2);
-    }
     let negativo = CA2(n2);
-    
-    
+    let n1Cifras = (n1.includes("."))? n1.indexOf("."): n1.length,
+        n2Cifras = (negativo.includes("."))? negativo.indexOf("."): negativo.length;
+        
+        for(let i = n1Cifras; i < n2Cifras; i++){
+            n1 = concat("0",n1);
+        }
+        for(let i = n2Cifras; i < n1Cifras; i++){
+            negativo = concat("1",negativo);
+        }
     function sumarDosNumerosParaResta(n1,n2){
         let imprimirResultado = (n1 === undefined || n2 === undefined);
         if(imprimirResultado) n1 = document.getElementById("numeroInput1").value;
@@ -370,18 +386,31 @@ function restarDosNumeros(n1,n2){
         let resultado = "";
     
         let parteEnteraN1 = n1,
-            parteEnteraN2 = n2;
-        if(n1.includes(".") && n2.includes(".")){
-            parteEnteraN1 = n1.substr(0,indiceOf(".")-1);
-            parteEnteraN2 = n2.substr(0,indiceOf(".")-1);
-            
-            let parteFraccionariaN1 = n1.substr(n1.indexOf(".")+1,n1.length-1);
-            let parteFraccionariaN2 = n2.substr(n2.indexOf(".")+1,n2.length-1);
-            sumaEnteros(parteFraccionariaN1,parteFraccionariaN2);
-            resultado = concat(".",resultado);
-        }
+        parteEnteraN2 = n2;
+    if(n1.includes(".") && n2.includes(".")){
+        parteEnteraN1 = n1.substr(0,n1.indexOf("."));
+        parteEnteraN2 = n2.substr(0,n2.indexOf("."));
+        let parteFraccionariaN1 = n1.substr(n1.indexOf(".")+1,n1.length-1);
+        let parteFraccionariaN2 = n2.substr(n2.indexOf(".")+1,n2.length-1);
+        sumaEnterosParaResta(parteFraccionariaN1,parteFraccionariaN2);
+        resultado = concat(".",resultado);
+    }
+    else if(n1.includes(".")){
+        parteEnteraN1 = n1.substr(0,n1.indexOf("."));
+        let parteFraccionariaN1 = n1.substr(n1.indexOf(".")+1,n1.length-1);
+        resultado = parteFraccionariaN1;
+        resultado = concat(".",resultado);
+    }
+    else if(n2.includes(".")){
+        parteEnteraN2 = n2.substr(0,n2.indexOf("."));
+        let parteFraccionariaN2 = n2.substr(n2.indexOf(".")+1,n2.length-1);
+        resultado = parteFraccionariaN2;
+        resultado = concat(".",resultado);
+    }
     
         function sumaEnterosParaResta(n1,n2){
+            console.log("N1",n1);
+            console.log("N2",n2);
             let n1UltimoIndice = n1.length - 1;
             let n2UltimoIndice = n2.length - 1;
             if(acarreoAnterior === undefined ) acarreoAnterior = 0;
@@ -437,6 +466,14 @@ function restarDosNumeros(n1,n2){
 }
 
 function agregarNCeros(cadena,cantidad){
+    let aux = cadena;
+    for(let i = 0; i < cantidad; i++){
+        aux += '0';
+    }
+    return aux;
+}
+
+function agregarNUnos(cadena,cantidad){
     let aux = cadena;
     for(let i = 0; i < cantidad; i++){
         aux += '0';
@@ -526,9 +563,11 @@ function decimalToBinary(decimal) {
 
 // Función para dividir dos números binarios y obtener el resultado en binario
 function dividirDosNumeros(bin1, bin2) {
-	if(bin1 === undefined) bin1 = parseInt(document.getElementById("numeroDividir1").value);
-    if(bin2 === undefined) bin2 = parseInt(document.getElementById("numeroDividir2").value);
+    
+	if(bin1 === undefined) bin1 = parseFloat(document.getElementById("numeroDividir1").value);
+    if(bin2 === undefined) bin2 = parseFloat(document.getElementById("numeroDividir2").value);
     // Convertimos los números binarios a decimales
+    
     let decimal1 = binaryToDecimal(bin1);
     let decimal2 = binaryToDecimal(bin2);
 
@@ -554,7 +593,6 @@ function esPotenciaDeDos(n) {
 
 function calcularCodigoHamming(numero){
     //Calcular cantidad de bits totales y bits de paridad
-	if(numero == undefined) numero = document.getElementById("numeroHamming").value;
     let bitsTotales = numero.length, bitsParidad = 0;
     while(Math.pow(2,bitsParidad) < numero.length + bitsParidad + 1){
         bitsParidad++; bitsTotales++;
@@ -595,6 +633,6 @@ function calcularCodigoHamming(numero){
         contador*=2;
         vueltas++;
     }while(vueltas < bitsParidad);
-    document.getElementById("resultadoOutput7").innerHTML = "Resultado: "+ numFinal.reverse().join(' ');
+
     return numFinal.reverse().join(' ');
 }
