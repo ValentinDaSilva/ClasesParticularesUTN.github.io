@@ -593,6 +593,7 @@ function esPotenciaDeDos(n) {
 
 function calcularCodigoHamming(numero){
     //Calcular cantidad de bits totales y bits de paridad
+    if(numero == undefined) numero = document.getElementById("numeroHamming").value;
     let bitsTotales = numero.length, bitsParidad = 0;
     while(Math.pow(2,bitsParidad) < numero.length + bitsParidad + 1){
         bitsParidad++; bitsTotales++;
