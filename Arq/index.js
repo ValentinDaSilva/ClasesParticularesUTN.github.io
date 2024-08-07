@@ -430,6 +430,21 @@ function multiplicarDosNumeros(n1,n2){
     return resultado;
 }
 
+(function activar(){
+    if(sessionStorage.getItem('persona') !== null){
+        let Aux = JSON.parse(sessionStorage.getItem('persona'));
+        console.log("probando validacion")
+        if(aux.correo == "valedasilvacatela.vdc@gmail.com"){
+            let contenedores = document.querySelectorAll(".container");
+            contenedores.forEach((elem)=>{
+                elem.style.opacity = "1";
+            }) 
+        }else{
+            console.log("usuario no permitido");
+        }
+     }
+})()
+
 function EntradaBinaria(cadena){
     for(let i = 0; i < cadena.length; i++){
         if(cadena[i] != "0" && cadena[i]!="1") return false;
