@@ -1,6 +1,6 @@
 var celdasReservadasSem1 = [];
 var celdasReservadasSem2 = [];
-var url = "https://script.google.com/macros/s/AKfycbwdO6N1DAUuTJTlbVvPyMjp2_YYHPE80eOHvfiMEXpYn4PuTUnEchIgS3rRRr6h9Q/exec"; 
+var url = "https://script.google.com/macros/s/AKfycbzoj5Uj-P31NjHY8PIDESO0EQmpSpS3ynbAI3cGQZKjh5jbhGNqPF6miHzUWaThCA/exec"; 
 var urlR = "https://script.google.com/macros/s/AKfycbymo4u5hSPuV9O592Vl5H6VitlPY9f27UpBblbQrLeV_lG5H8iDLaWKGytsVxjQdm8/exec";
 let $siguiente = document.querySelector(".siguiente");
 let $botones = document.querySelectorAll(".caja");
