@@ -7,11 +7,12 @@ class EnvioPOST{
 
 document.getElementById('formularioRegistro').addEventListener('submit', function(event) {
     event.preventDefault();
-    if(validarFormulario()){
+    //if(validarFormulario()){
         let formData = new FormData(this);
         let datosAEnviar = [];
 	let indice = 0;
         formData.forEach((valor, llave) => {
+            console.log(valor,llave,indice)
             if(indice != 4 && indice != 5 && indice != 6){
                 datosAEnviar.push(valor);
             }else{
@@ -29,8 +30,40 @@ document.getElementById('formularioRegistro').addEventListener('submit', functio
         datosAEnviar[2] = datosAEnviar[2].toLowerCase();
         datosAEnviar.push(contraseñas);
         let envioFetch = new EnvioPOST("agregarAlumno",datosAEnviar);
+        //enviar(envioFetch);
+    //}
+})
+
+document.getElementById('formularioRegistro').addEventListener('submit', function(event) {
+    console.log("asdasdasd")
+    event.preventDefault();
+    if(validarFormulario()){
+        let formData = new FormData(this);
+        let datosAEnviar = [];
+	    let materia = "";
+        let numeroTelefonico = "";
+        formData.forEach((valor, llave) => {
+            if(llave != "Area" && llave != "Telefono" && llave != "Materia" && llave != "RepetirContrasenia"){
+                datosAEnviar.push(valor);
+            }else if(llave == "Area"){
+                numeroTelefonico+=valor;
+            }else if(llave == "Telefono"){
+                numeroTelefonico+=valor;
+                datosAEnviar.push(numeroTelefonico);
+            }else if(llave == "Materia"){
+                if(materia == "") materia+=valor;
+                else{
+                    materia= materia + " y " + valor;
+                    datosAEnviar.push(materia);
+                }
+            }
+        });
+        datosAEnviar[2] = datosAEnviar[2].toLowerCase();
+        datosAEnviar.push(contraseñas);
+        console.log(datosAEnviar);
+        let envioFetch = new EnvioPOST("agregarAlumno",datosAEnviar);
         enviar(envioFetch);
-    }
+   }
 })
 let contardorContraseñas = 0, contraseñas = [];
 function validarMateria(){
