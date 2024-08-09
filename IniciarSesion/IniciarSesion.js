@@ -15,7 +15,7 @@ class Persona {
   }
 }
 var Alumno;
-var url = "https://script.google.com/macros/s/AKfycbwuXnyiq6S0gkyDbMOjWu2wrpk4c2FZ1_7SdWg7i1z1rC5oUxXPEIMB_nFMiMbEDr4/exec";
+var url = "https://script.google.com/macros/s/AKfycbzLD6CrZytsCIVLHQcfkZMoAw8T4QABYyzpkdbJpZAQzoSx9KcavrQF2gDXA14POTo/exec";
 
 document.getElementById('formularioRegistro').addEventListener('submit', function (event) {
   event.preventDefault();
@@ -25,9 +25,7 @@ document.getElementById('formularioRegistro').addEventListener('submit', functio
       datosAEnviar.push(valor);
   });
   datosAEnviar[0] = datosAEnviar[0].toLowerCase();
-  console.log(datosAEnviar);
   let urlFinal = url + "?correo=" + datosAEnviar[0] + "&contrasenia=" + datosAEnviar[1];
-  console.log(urlFinal);
   enviar(urlFinal);
 })
 
@@ -43,11 +41,11 @@ function enviar(urlFinal) {
           return response.json();
       })
       .then(data => {
-          console.log(data); // Aquí se imprime el objeto JSON en la consola
+          console.log(data);
           if(data.sesion){
               Alumno = new Persona(data.Nombre,data.Contrasenia,data.Correo);
               const personaJSON = JSON.stringify(Alumno);
-              console.log(personaJSON);
+              ;
               sessionStorage.setItem('persona', personaJSON);
               window.location.href = "../index.html";
           }
