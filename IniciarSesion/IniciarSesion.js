@@ -15,7 +15,7 @@ class Persona {
   }
 }
 var Alumno;
-var url = "https://script.google.com/macros/s/AKfycbzdklIYGsaVytfEq2mOegd4oiLuxe14Xt_6tXRy9kCHn1iPIGLRm2zC3F7TjhhlJY0/exec";
+var url = "https://script.google.com/macros/s/AKfycbwuXnyiq6S0gkyDbMOjWu2wrpk4c2FZ1_7SdWg7i1z1rC5oUxXPEIMB_nFMiMbEDr4/exec";
 
 document.getElementById('formularioRegistro').addEventListener('submit', function (event) {
   event.preventDefault();
