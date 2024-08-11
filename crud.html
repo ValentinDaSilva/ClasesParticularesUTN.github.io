@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD en Google Sheets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        h3 {
+            color: #555;
+            margin-top: 30px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultadoLeer {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border: 1px solid #b3d4fc;
+            border-radius: 4px;
+            color: #31708f;
+        }
+    </style>
+</head>
+<body>
+    <h2>CRUD en Google Sheets</h2>
+    
+    <h3>Crear Registro</h3>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="text" id="apellido" placeholder="Apellido">
+    <input type="email" id="email" placeholder="Email">
+    <button onclick="crearRegistro()">Crear</button>
+
+    <h3>Leer Registro</h3>
+    <input type="number" id="leerId" placeholder="ID">
+    <button onclick="leerRegistro()">Leer</button>
+    <p id="resultadoLeer"></p>
+
+    <h3>Actualizar Registro</h3>
+    <input type="number" id="updateId" placeholder="ID">
+    <input type="text" id="updateNombre" placeholder="Nuevo Nombre">
+    <input type="text" id="updateApellido" placeholder="Nuevo Apellido">
+    <input type="email" id="updateEmail" placeholder="Nuevo Email">
+    <button onclick="actualizarRegistro()">Actualizar</button>
+
+    <h3>Eliminar Registro</h3>
+    <input type="number" id="deleteId" placeholder="ID">
+    <button onclick="eliminarRegistro()">Eliminar</button>
+
+    <script>
+        // URL del servicio web de Google Apps Script
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzg99FAd1ysTD3ykMuDHM6u5394QKBf6Ul_-MT25ZIZe0tI5g1L_8MURlTK-U1rrKNm/exec';  // Reemplaza con la URL de tu aplicación web publicada
+
+        function crearRegistro() {
+            const nombre = document.getElementById("nombre").value;
+            const apellido = document.getElementById("apellido").value;
+            const email = document.getElementById("email").value;
+
+            const data = {
+                action: 'crear',
+                nombre: nombre,
+                apellido: apellido,
+                email: email
+            };
+
+            fetch(scriptURL, {
+                method: 'POST', mode: 'no-cors',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.json())
+              .then(result => {
+                  alert('Registro creado con éxito');
+              }).catch(error => console.error('Error:', error));
+        }
+
+        function leerRegistro() {
+            const id = document.getElementById("leerId").value;
+
+            const data = {
+                action: 'leer',
+                id: id
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: "no-cors",
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(result => {
+                const resultado = result ? `ID: ${result[0]}<br>Nombre: ${result[1]}<br>Apellido: ${result[2]}<br>Email: ${result[3]}` : 'Registro no encontrado';
+                document.getElementById("resultadoLeer").innerHTML = resultado;
+            })
+            .catch(error => console.error('Error:', error));
+
+        }
+
+        function actualizarRegistro() {
+            const id = document.getElementById("updateId").value;
+            const nombre = document.getElementById("updateNombre").value;
+            const apellido = document.getElementById("updateApellido").value;
+            const email = document.getElementById("updateEmail").value;
+
+            const data = {
+                action: 'actualizar',
+                id: id,
+                nombre: nombre,
+                apellido: apellido,
+                email: email
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',mode: 'no-cors',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.json())
+              .then(result => {
+                  alert('Registro actualizado con éxito');
+              }).catch(error => console.error('Error:', error));
+        }
+
+        function eliminarRegistro() {
+            const id = document.getElementById("deleteId").value;
+
+            const data = {
+                action: 'eliminar',
+                id: id
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',mode: 'no-cors',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.json())
+              .then(result => {
+                  alert('Registro eliminado con éxito');
+              }).catch(error => console.error('Error:', error));
+        }
+
+        // Eventos de tecla Enter para cada formulario
+        document.getElementById("nombre").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") crearRegistro();
+        });
+        document.getElementById("apellido").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") crearRegistro();
+        });
+        document.getElementById("email").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") crearRegistro();
+        });
+
+        document.getElementById("leerId").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") leerRegistro();
+        });
+
+        document.getElementById("updateId").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") actualizarRegistro();
+        });
+        document.getElementById("updateNombre").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") actualizarRegistro();
+        });
+        document.getElementById("updateApellido").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") actualizarRegistro();
+        });
+        document.getElementById("updateEmail").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") actualizarRegistro();
+        });
+
+        document.getElementById("deleteId").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") eliminarRegistro();
+        });
+    </script>
+</body>
+</html>
