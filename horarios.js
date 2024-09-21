@@ -335,6 +335,7 @@ $BotonReservar.addEventListener("click",()=>{
               icon: "success",
               title: "Listo, aguarda un instante mientras termina de reservarse"
             });
+            alert('Turno enviado a tu correo electronico');
           }else{
             Swal.fire({
               icon: "error",
