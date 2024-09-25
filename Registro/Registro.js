@@ -5,6 +5,34 @@ class EnvioPOST{
     }
 }
 
+document.getElementById('formularioRegistro').addEventListener('submit', function(event) {
+    event.preventDefault();
+    //if(validarFormulario()){
+        let formData = new FormData(this);
+        let datosAEnviar = [];
+	let indice = 0;
+        formData.forEach((valor, llave) => {
+            console.log(valor,llave,indice)
+            if(indice != 4 && indice != 5 && indice != 6){
+                datosAEnviar.push(valor);
+            }else{
+                let auxiliar = [];
+                if(indice == 5) {
+                    auxiliar.push(valor);
+                }
+                else if(indice == 6){
+                    auxiliar[0] = auxiliar[0]+valor;
+                    datosAEnviar.push(auxiliar[0]);
+                }
+            }
+	   indice++;
+        });
+        datosAEnviar[2] = datosAEnviar[2].toLowerCase();
+        datosAEnviar.push(contraseñas);
+        let envioFetch = new EnvioPOST("agregarAlumno",datosAEnviar);
+        //enviar(envioFetch);
+    //}
+})
 
 document.getElementById('formularioRegistro').addEventListener('submit', function(event) {
     console.log("asdasdasd")
@@ -14,25 +42,7 @@ document.getElementById('formularioRegistro').addEventListener('submit', functio
         let datosAEnviar = [];
 	    let materia = "";
         let numeroTelefonico = "";
-        let contadorMateria = 0;
         formData.forEach((valor, llave) => {
-            if(llave == "Materia" && contadorMateria == 0){
-                materia+=valor;
-                contadorMateria++;
-                
-            }
-            else if(contadorMateria == 1){
-                if(llave=="Materia"){
-                    materia= materia + " y " + valor;
-                    datosAEnviar.push(materia);
-                    contadorMateria++;
-                    
-                }else{
-                    datosAEnviar.push(materia);
-                    contadorMateria++;
-                    
-                }
-            }
             if(llave != "Area" && llave != "Telefono" && llave != "Materia" && llave != "RepetirContrasenia"){
                 datosAEnviar.push(valor);
             }else if(llave == "Area"){
@@ -40,11 +50,17 @@ document.getElementById('formularioRegistro').addEventListener('submit', functio
             }else if(llave == "Telefono"){
                 numeroTelefonico+=valor;
                 datosAEnviar.push(numeroTelefonico);
+            }else if(llave == "Materia"){
+                if(materia == "") materia+=valor;
+                else{
+                    materia= materia + " y " + valor;
+                    datosAEnviar.push(materia);
+                }
             }
         });
         datosAEnviar[2] = datosAEnviar[2].toLowerCase();
         datosAEnviar.push(contraseñas);
-        
+        console.log(datosAEnviar);
         let envioFetch = new EnvioPOST("agregarAlumno",datosAEnviar);
         enviar(envioFetch);
    }
@@ -117,7 +133,7 @@ function validarContrasenia(){
           return false;
     }
     else {
-        
+        console.log("Ejecute ninguna opcion satisfacida");
     }
     return true;
 }
@@ -167,7 +183,7 @@ function textoConPalabrasProhibidas(texto, palabrasProhibidas) {
   }
   
 
-let url = 'https://script.google.com/macros/s/AKfycbzLD6CrZytsCIVLHQcfkZMoAw8T4QABYyzpkdbJpZAQzoSx9KcavrQF2gDXA14POTo/exec'
+let url = 'https://script.google.com/macros/s/AKfycbwR-H2FCkNT3ZRmiwSqH3z-gzMzmRCFX5wpi9Dqrz0cmFDIYmSrZAtoPKuWE-unxW0/exec'
 
 function enviar(datos){
       // Envío de datos al servidor
