@@ -1,122 +1,274 @@
+/* Pantalla 1 */
+*{
+    box-sizing: border-box;
+}
 body{
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-color: #B28063;
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #9b4922;
 }
-.tablaContenedor{
-  width: 100vw;
+p{
+    margin:0;
 }
-table {
-    z-index: 0;
-    background-color: inherit;
-    border-collapse: collapse;
-    width: 60vw;
-    margin: auto;
-    display: none;
-    border-collapse: separate;
-    border-spacing: 7px;
-    height: 100vh;
+.pantalla1{
+    width: 100%;
+    height: 100dvh;
+    /* background-color: red; */
+    background-color: #9b4922;
+    position: relative;
 }
-#titulo {
-  font-size: 100%;
-}
-th, td {
-    word-wrap: break-word;
-    background-color: white;
-    border: 1px solid black;
-    padding: 5px;
-    text-align: center;
-    font-size: 12px;
-    width: 50px;
-    border-radius: 2px;
-}
-.invisible {
-    display: none;
-}
-.contenedorLouder{
-  position: absolute;
-  z-index: -100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-}
-.loader {
-    opacity: 1;
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
+
+.menu{
     position: absolute;
-    z-index: 1;
-    display: block; /* Inicialmente oculto */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 10;
+    display: none;
+    flex-direction: column;
+}
+.menu .usuarioClasesAFAvor{
+    color: white;
+    font-weight: 1000;
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+    padding: 20px;    
 }
 
-.siguiente svg{
-  width: 6vh;
-  height: 6vh;
-  margin-left: 10px;
+.menu .usuarioDatos{
+    color: white;
+    font-size: 20px;
+    padding: 10px;
 }
 
-.siguiente{
-  border: 3px solid black;
-  cursor: pointer;
-  margin:10px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  display: none; 
-  transform: scale(1.2);
+.menu .usuarioHorarios{
+    color: white;
+    font-size: 20px;
+    margin-left: 30px;
+    padding-bottom: 10px;
 }
 
-.caja {
-  border: 3px solid black;
-  cursor: pointer;
-  margin:10px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  display: none;
-  transform: scale(0.9);
+.titulo{
+    background-color: white;
+    height: 15dvh;
+    display: flex;
+    justify-content: space-between;
 }
 
-.botones{
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.titulo .semana{
+    width: 60dvw;
+    height: 100%;
+    background-color: white;
+    font-size: 175%;
+    padding: 20px;
+    padding-left: 5%;
+    padding-bottom: 15px;
+    font-family: url(assets/fuentes/Montserrat.woff2);
+    line-height: 1.38247149em;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #764b36;
+    display: flex;
+    align-items: end;
+}
+.login{
+    width: 40dvw;
+    height: 100%;
+    display: flex;
+    /* background-color: yellowgreen; */
+    cursor: pointer;
 }
 
-  @keyframes spin {
+.cajaMensajeLogin{
+    width: 80%;
+    height: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: url(assets/fuentes/Montserrat.woff2);
+    font-size: 3dvh;
+    font-weight: 700;
+    line-height: 1.3815535em;
+    text-align: center;
+}
+
+.cajaIncognito{
+    width: 20%;
+    height: 100%;
+    /* background-color: brown; */
+    margin-right: 10dvw;
+    padding: 10px;
+}
+
+.login .incognito{
+    width: 100%;
+    height: 100%;
+}
+
+/* Horario */
+.horario{
+    width: 100vw;
+    height: 85dvh;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.conteinerRosa1{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    /* background-color: red; */
+}
+.conteinerRosa2{
+    width: 50%;
+    height: 100%;
+    /* background-color: green; */
+    display: flex;
+    align-items: start;
+}
+
+.rosa1{
+    width: 100%;
+    max-height: 85dvh;
+}
+.rosa2{
+    width: 100%;
+    transform: rotate(180deg);
+    max-height: 85dvh;
+}
+
+.tablaHorarios{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blueviolet; */
+}
+.gridContainer{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(14,1fr);
+    grid-gap: 10px;
+    overflow: hidden;
+    padding: 1%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.gridItem {
+    background-color: white;
+    word-wrap: break-word;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loginMovil{
+    display: none;
+}
+.botonReservar, .cambioDeSemana{
+    color: black;
+    background-color: #d8a790;
+    width: 20dvw;
+    height: 10dvh;
+    border-radius: 20px;
+    border: 2px solid black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: url(assets/fuentes/Montserrat.woff2);   
+    cursor: pointer;
+    margin: 10px;
+}
+
+.cajaBotonReservar{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.loaderSencillo {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-left: 50px;
+}
+
+/* Animación del loader */
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
-
-@media screen and (max-width: 900px) {
-  .tablaContenedor{
-    width: 100vw;
-  }
-  table {
-      z-index: 0;
-      background-color: inherit;
-      border-collapse: collapse;
-      width: 100vw;
-      margin: auto;
-      display: none;
-      border-collapse: separate;
-      border-spacing: 5px;
-      height: auto;
-  }
+}
+@media only screen and (max-width: 768px) {
+    .titulo{
+        height: 10dvh;
+    }
+    .horario{
+        height: 90dvh;
+    }
+    .titulo .semana{
+        width: 80dvw;
+        font-size: 100%;
+        font-weight: 800;
+    }
+    .gridContainer{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .gridItem{
+        font-size: 10px;
+    }
+    .login{
+        display: none;
+    }
+    .loginMovil{
+        display: block;
+        width: 20dvw;
+        padding: 0;
+    }
+    .incognitoMovil{
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+    }
+    .botonReservar, .cambioDeSemana{
+        color: black;
+        background-color: #d8a790;
+        width: 20dvh;
+        height: 8dvh;
+        border-radius: 20px;
+        border: 2px solid black;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        font-size: 15px;
+        font-weight: 800;
+        font-family: url(assets/fuentes/Montserrat.woff2);   
+        cursor: pointer;
+        text-align: center;
+        margin: 10px;
+    }
+    .cajaBotonReservar{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
-.inmovible {
-  background-color: inherit;
-}

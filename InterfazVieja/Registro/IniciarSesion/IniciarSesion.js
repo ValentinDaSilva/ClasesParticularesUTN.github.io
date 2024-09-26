@@ -15,7 +15,7 @@ class Persona {
   }
 }
 var Alumno;
-var url = "https://script.google.com/macros/s/AKfycbxFHD2M8NkIEA28EkkXNQuVT_8rucvH0YcEZgz4S-yrGDxLIfQOwLV004HUUKn2JwU/exec";
+var url = "https://script.google.com/macros/s/AKfycbzLD6CrZytsCIVLHQcfkZMoAw8T4QABYyzpkdbJpZAQzoSx9KcavrQF2gDXA14POTo/exec";
 
 document.getElementById('formularioRegistro').addEventListener('submit', function (event) {
   event.preventDefault();
@@ -25,7 +25,7 @@ document.getElementById('formularioRegistro').addEventListener('submit', functio
       datosAEnviar.push(valor);
   });
   datosAEnviar[0] = datosAEnviar[0].toLowerCase();
-  let urlFinal = url + "?correo=" + datosAEnviar[0] + "&contrasenia=" + datosAEnviar[1] + "&funcion=validarUsuario";
+  let urlFinal = url + "?correo=" + datosAEnviar[0] + "&contrasenia=" + datosAEnviar[1];
   enviar(urlFinal);
 })
 
@@ -43,10 +43,11 @@ function enviar(urlFinal) {
       .then(data => {
           console.log(data);
           if(data.sesion){
-              const personaJSON = JSON.stringify(data);
+              Alumno = new Persona(data.Nombre,data.Contrasenia,data.Correo);
+              const personaJSON = JSON.stringify(Alumno);
               ;
               sessionStorage.setItem('persona', personaJSON);
-              window.location.href = "../horarios.html";
+              window.location.href = "../index.html";
           }
           else{
               Swal.fire({
