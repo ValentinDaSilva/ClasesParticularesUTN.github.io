@@ -46,7 +46,7 @@ function enviar(urlFinal) {
               const personaJSON = JSON.stringify(data);
               ;
               sessionStorage.setItem('persona', personaJSON);
-              window.location.href = "../horarios.html";
+              window.location.href = "../index.html";
           }
           else{
               Swal.fire({
