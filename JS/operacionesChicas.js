@@ -90,3 +90,11 @@ function cerrarSesion(){
     location.reload();
 }
 
+const cursor = document.querySelectorAll('.cursor');
+
+cursor.forEach((elem)=>{
+  elem.addEventListener("animationend",()=>{
+    elem.style.display = "none";
+  })
+})
+

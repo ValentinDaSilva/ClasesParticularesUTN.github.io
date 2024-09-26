@@ -18,6 +18,32 @@ p{
     position: relative;
 }
 
+.cursor {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 15;
+    bottom: -50px;
+    left: -50px;
+    animation: moveCursor 1s 4;
+}
+
+
+@keyframes moveCursor {
+    0% {
+        bottom: -50px;
+        left: -50px;
+    }
+    50% {
+        bottom: -20px;
+        left: -20px;
+    }
+    100% {
+        bottom: -50px;
+        left: -50px;
+    }
+}
+
 .menu{
     position: absolute;
     width: 100%;
@@ -27,6 +53,7 @@ p{
     display: none;
     flex-direction: column;
 }
+
 .menu .usuarioClasesAFAvor{
     color: white;
     font-weight: 1000;
@@ -78,6 +105,7 @@ p{
     display: flex;
     /* background-color: yellowgreen; */
     cursor: pointer;
+    position: relative;
 }
 
 .cajaMensajeLogin{
@@ -100,6 +128,7 @@ p{
     /* background-color: brown; */
     margin-right: 10dvw;
     padding: 10px;
+    position: relative;
 }
 
 .login .incognito{
@@ -242,6 +271,7 @@ p{
         display: block;
         width: 20dvw;
         padding: 0;
+        position: relative;
     }
     .incognitoMovil{
         width: 100%;
