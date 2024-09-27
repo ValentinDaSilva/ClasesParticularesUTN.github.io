@@ -57,7 +57,7 @@ async function asignarHorario(celdas, numeroDeHoja) {
         numeroHoja: numeroDeHoja,
     };
     let url = "https://script.google.com/macros/s/AKfycbzKa5cpRcjymslgmdPzfUssKzaUMHe8RrpBpGJ4kKQY6K_FgB_NNmRbRs-Hy5Wbovg/exec";
-
+    console.log(datos);
     await fetch(url, {
         method: 'POST',
         mode: 'no-cors',
