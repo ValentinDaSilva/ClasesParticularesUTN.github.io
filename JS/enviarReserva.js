@@ -26,7 +26,7 @@ async function enviarCeldasReservadas(horariosSeleccionados, numeroDeHoja) {
         celdas: horariosSeleccionados,
         numeroHoja: numeroDeHoja,
     };
-    let url = "https://script.google.com/macros/s/AKfycbwr3_csqYI3XPL5CMUsZiOVGYolPnvMiDg8uj-A_bK7r69Lj5-ZPEiSDMoTaYg9/exec";
+    let url = "https://script.google.com/macros/s/AKfycbx7t1JvC6_pLgYB3MGYrbBbuEmSnytk-ZiyJhM3WOGqoBD60XemkTv5MHt2x9w__A/exec";
 
     document.querySelector(".gridContainer").style.display = "none";
     let loader = crearLoader();
