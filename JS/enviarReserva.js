@@ -1,5 +1,11 @@
 document.querySelector(".botonReservar").addEventListener("click", async () => {
-    if (Alumno == null || !Alumno.sesion) {
+    if(numeroHoja == 0){
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "De momento no hay mas cupos disponibles. Reserve la prioxima semana o consulte turnos por whatsapp",
+          });
+    }else if (Alumno == null || !Alumno.sesion) {
         Swal.fire({
             title: "Accion Erronea",
             icon: "info",
