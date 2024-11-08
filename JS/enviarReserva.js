@@ -1,6 +1,6 @@
-sinTurnosDisponibles = true;
+sinTurnosDisponibles = 0;
 document.querySelector(".botonReservar").addEventListener("click", async () => {
-    if(sinTurnosDisponibles){
+    if(sinTurnosDisponibles and numeroHoja == 0){
         Swal.fire({
             icon: "error",
             title: "Error",
